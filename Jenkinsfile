@@ -24,9 +24,7 @@ pipeline {
     stage('Fin') {
       steps {
         echo 'FIN'
-        bat '''echo FIN: empezando 
-                    FIN: fecha y hora -> %DATE% %TIME%  
-                    FIN: terminado'''
+        bat 'echo FIN: esdmpezando                     FIN: fecha y hora -> %DATE% %TIME%                      FIN: terminado'
       }
     }
 

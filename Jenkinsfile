@@ -4,27 +4,30 @@ pipeline {
     stage('Inicio') {
       steps {
         echo 'INICIO'
-        bat 'echo Empezando pipeline'
+        bat 'echo Inicio: %DATE% %TIME%'
       }
     }
 
-    stage('Sistema') {
-      steps {
-        echo 'SISTEMA'
-        bat 'echo %DATE% %TIME%'
-      }
-    }
+    stage('Logs') {
+      parallel {
+        stage('p1') {
+          steps {
+            echo 'P1 - Generando log 1'
+          }
+        }
 
-    stage('Aprobacion') {
-      steps {
-        input(message: '¿Continuar a FIN?', ok: 'Continuar')
+        stage('p2') {
+          steps {
+            echo 'P2 - Generando log 2'
+          }
+        }
+
       }
     }
 
     stage('Fin') {
       steps {
-        echo 'FIN'
-        bat 'echo FIN: '
+        echo 'FIN - Verificando resultados'
       }
     }
 
